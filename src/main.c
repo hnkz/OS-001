@@ -6,7 +6,10 @@ void start_kernel(
         void *_fs_start __attribute__ ((unused))
 ){
     fb_init(_fb);
-    set_bg(0, 255, 0);
+    set_fg(255, 255, 255);
+    set_bg(0, 75, 250);
     clear_screen();
+
+    puts("HELLO WORLD!");
     while (1);
 }

@@ -1,6 +1,7 @@
 #include <fb.h>
 
 struct framebuffer fb;
+struct pixelformat color_fg;
 struct pixelformat color_bg;
 
 void fb_init(struct framebuffer *_fb)
@@ -11,6 +12,13 @@ void fb_init(struct framebuffer *_fb)
     fb.vr = _fb->vr;
 }
 
+void set_fg(unsigned char r, unsigned char g, unsigned char b)
+{
+    color_fg.b = b;
+    color_fg.g = g;
+    color_fg.r = r;
+}
+
 void set_bg(unsigned char r, unsigned char g, unsigned char b)
 {
     color_bg.b = b;
@@ -18,7 +26,12 @@ void set_bg(unsigned char r, unsigned char g, unsigned char b)
     color_bg.r = r;
 }
 
-void draw_px(unsigned int x, unsigned int y,
+inline void draw_px_fg(unsigned int x, unsigned int y)
+{
+    draw_px(x, y, color_fg.r, color_fg.g, color_fg.b);
+}
+
+inline void draw_px(unsigned int x, unsigned int y,
                     unsigned char r, unsigned char g, unsigned char b)
 {
     struct pixelformat *p = fb.base;
@@ -29,7 +42,7 @@ void draw_px(unsigned int x, unsigned int y,
     p->r = r;
 }
 
-void fill_rect(unsigned int x, unsigned int y,
+inline void fill_rect(unsigned int x, unsigned int y,
                       unsigned int w, unsigned int h,
                       unsigned char r, unsigned char g, unsigned char b)
 {
