@@ -10,6 +10,6 @@ void start_kernel(
     set_bg(0, 75, 250);
     clear_screen();
 
-    puts("HELLO WORLD!");
+    puts("HELLO WORLD!: KAZUKI; HANAI");
     while (1);
 }
