@@ -1,4 +1,6 @@
 #include <fb.h>
+#include <fbcon.h>
+#include <kbc.h>
 
 void start_kernel(
         void *_t __attribute__ ((unused)),
@@ -9,7 +11,14 @@ void start_kernel(
     set_fg(255, 255, 255);
     set_bg(0, 75, 250);
     clear_screen();
+    puts("HELLO WORLD!\n");
 
-    puts("HELLO WORLD!: KAZUKI; HANAI");
-    while (1);
+    while (1) {
+        char c = getc();
+        if (('a' <= c) && (c <= 'z'))
+            c = c - 'a' + 'A';
+        else if (c == '\n')
+            putc('\r');
+        putc(c);
+    }
 }
