@@ -6,7 +6,7 @@ SRCDIR = ./src
 SRCS = $(wildcard $(SRCDIR)/*.c)
 OBJDIR = ./obj
 
-$(TARGET): obj/main.o obj/fb.o obj/font.o obj/fbcon.o
+$(TARGET): obj/main.o obj/fb.o obj/font.o obj/fbcon.o obj/x86.o obj/kbc.o
 	ld $(LDFLAGS) -o $@ $+
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
